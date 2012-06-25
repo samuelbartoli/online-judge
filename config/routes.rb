@@ -1,7 +1,20 @@
 OnlineJudge::Application.routes.draw do
-  resources :users, :user_sessions
+
+  root :to => 'users#index'
+  resources :users, :only => [:new, :create]
+  resources :user_sessions, :only => :create
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
+
+  namespace :admin do
+    resources :users
+  end
+
+  scope :module => "my" do
+    resources :users, :only => [:show, :edit, :update]
+  end
+
+  resources :problems, :module => "admin"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
