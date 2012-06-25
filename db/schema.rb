@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120619044327) do
+ActiveRecord::Schema.define(:version => 20120622192102) do
+
+  create_table "problems", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.text     "description"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "test_file_name"
+    t.string   "test_content_type"
+    t.integer  "test_file_size"
+    t.datetime "test_updated_at"
+  end
+
+  create_table "problems_users", :id => false, :force => true do |t|
+    t.integer "problem_id"
+    t.integer "user_id"
+    t.string  "estado"
+  end
 
   create_table "user_sessions", :force => true do |t|
     t.datetime "created_at", :null => false

@@ -1,22 +1,3 @@
-<h1>Listing users</h1>
-<p id="notice"><%= notice %></p>
-<table>
-  <tr>
-    <th>Username</th>
-    <th>Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1> Bienvenido al Ruby Online Judge </h1>
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.username %></td>
-    <td><%= user.email %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
+<div><%= link_to 'Problemas', problems_path %></div>
