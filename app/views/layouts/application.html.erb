@@ -2,13 +2,22 @@
 <html>
 <head>
   <title>OnlineJudge</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "depot", :media => "all" %>
+  <%= javascript_include_tag "application" "boxdialog" "jquery.min.js" %>
+  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.cluetip.js">
+  $(document).ready(function() {
+    $("a.nav").cluetip();  
+  });
+  </script>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <div id="nav">
+  <div id="banner">  
+    <%= @page_title || "Online Judge" %>
+  </div>
+  <div id="colummns">
+  <class id="nav">
     <%= link_to "Home", :root %> | 
     <% if current_user && current_user.is_admin? %>
         <%= link_to "Edit Profile", edit_admin_user_path(current_user.id)%>
@@ -17,12 +26,13 @@
         <%= link_to "Edit Profile", edit_user_path(current_user.id)%>
          | <%= link_to "Logout", :logout%>
     <% else %>
-        <%= link_to "Register", new_user_path%> | 
-        <%= link_to "Login", :login %>
+        <%= link_to "Register", new_user_path%><br /> 
+        <%= link_to "Login", :login %><br />
     <% end %>
   </div>
-
-<%= yield %>
-
+  <div id="main">
+    <%= yield %>
+  </div>
+  <div>
 </body>
 </html>
