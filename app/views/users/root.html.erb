@@ -1,0 +1,8 @@
+<h1> Bienvenido al Ruby Online Judge </h1>
+
+<% if current_user && current_user.is_admin? %>
+  <div><%= link_to 'Administrar Usuarios', :admin_users %></div>
+  <div><%= link_to 'Administrar Problemas', :problems %></div>
+<% else %>
+  <div><%= link_to 'Problemas', :problems %></div>
+<% end %>

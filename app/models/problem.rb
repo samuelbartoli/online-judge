@@ -12,7 +12,7 @@ class Problem < ActiveRecord::Base
   validate :check_content_type
 
   def check_content_type
-   if !'application/x-ruby'.include?(self.test_content_type)
+   if !'text/plain'.include?(self.test_content_type)
     errors.add(:test, "file type is invalid. It must be a ruby application") # or errors.add
    end
   end

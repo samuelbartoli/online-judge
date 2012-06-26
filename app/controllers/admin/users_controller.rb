@@ -1,12 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_filter :admin_login_required
 
-  def admin_root
-    respond_to do
-      format.html
-    end
-  end
-
   # GET admin/users
   # GET admin/users.json
   def index
@@ -24,7 +18,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render "users/show" }
       format.json { render json: @user }
     end
   end
@@ -32,6 +26,7 @@ class Admin::UsersController < ApplicationController
   # GET admin/users/1/edit
   def edit
     @user = User.find(params[:id])
+    render "users/edit"
   end
 
   # PUT admin/users/1
@@ -66,7 +61,7 @@ class Admin::UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to users_url }
+      format.html { redirect_to :admin_users }
       format.json { head :no_content }
     end
   end

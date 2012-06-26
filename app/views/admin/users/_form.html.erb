@@ -18,7 +18,8 @@
   <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
-  </div>
+  </div> <br />
+
   <% if current_user && current_user.is_admin? %>
     <div>
       <%= f.check_box :roles %>
@@ -27,8 +28,9 @@
       <% else %>
         <%= f.label(:roles, "Add Admin Privilage") %>
       <% end %>
-    </div>
+    </div><br/>
   <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

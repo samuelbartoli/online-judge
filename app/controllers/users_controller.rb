@@ -1,19 +1,10 @@
 class UsersController < ApplicationController 
 
-  # GET /users
-  # GET /users.json
-  def index
-
-    if current_user && current_user.is_admin?
-        render action: "admin_root"
-    elsif current_user && !current_user.is_admin?
-        render action: "user_root"
-    else
+  # GET /
+  def root
       respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @users }
+        format.html # root.html.erb
       end
-    end
   end
 
   # GET /users/new
