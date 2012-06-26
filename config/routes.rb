@@ -1,13 +1,13 @@
 OnlineJudge::Application.routes.draw do
 
-  root :to => 'users#index'
+  root :to => 'users#root'
   resources :users, :only => [:new, :create]
   resources :user_sessions, :only => :create
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
 
   namespace :admin do
-    resources :users
+    resources :users, :except => [:create, :new]
   end
 
   scope :module => "my" do

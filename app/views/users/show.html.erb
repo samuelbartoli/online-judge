@@ -11,20 +11,18 @@
 </p>
 
 <p>
-  <b>Crypted password:</b>
-  <%= @user.crypted_password %>
+  <b>Permission:</b>
+  <% if @user.is_admin? %>
+    Admin
+  <% else %>
+    Competitor
+  <% end %>
 </p>
 
-<p>
-  <b>Password salt:</b>
-  <%= @user.password_salt %>
-</p>
+<% if current_user && current_user.is_admin? %>
+  <%= link_to 'Edit', edit_admin_user_path(@user) %> |
+<% else %>
+  <%= link_to 'Edit', edit_user_path(@user) %>
+<% end %>
 
-<p>
-  <b>Persistence token:</b>
-  <%= @user.persistence_token %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', :back %>
