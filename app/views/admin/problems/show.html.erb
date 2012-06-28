@@ -1,4 +1,12 @@
 <p id="notice"><%= notice %></p>
+<% if alert %>
+    <div id="error_explanation">
+      <h2> Can't check answer</h2>
+      <ul>
+        <li><%= alert %></li>
+      </ul>
+    </div>
+<% end %>
 
 <p>
   <b>Name:</b>
@@ -14,6 +22,24 @@
   <b>Description:</b>
   <%= @problem.description %>
 </p>
+
+<% if current_user %>
+  <p>
+    <b>Status:</b>
+    <% solutions = @problem.solutions.for_user(current_user.id) %> 
+    <td><%= solutions.blank? ? 'No Answer' : solutions.first.state %></td>
+  </p>
+<% end %>
+
+  <% if current_user && (solutions.blank? || solutions.first.state != "Correct Answer") %>
+
+  <%=form_for :solution, :url => solution_path(@problem.id), :method => :put do |f| %>
+      <%= f.file_field :archivo %>
+      <%= f.hidden_field @problem.id %>
+      <div><%= f.submit "Send Solution" %> </div>
+  <% end %>
+ 
+<% end %>
 
 <% if current_user && current_user.is_admin? %>
 <%= link_to 'Edit', edit_problem_path(@problem) %> |

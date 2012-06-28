@@ -5,7 +5,7 @@
     <th>Name</th>
     <th>Code</th>
     <th>Description</th>
-    <th>Test</th>
+    <th>Status</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,6 +16,10 @@
     <td><%= problem.name %></td>
     <td><%= problem.code %></td>
     <td><%= problem.description %></td>
+    <% if current_user %>
+      <% solutions = problem.solutions.for_user(current_user.id) %> 
+      <td><%= solutions.blank? ? 'No answer' : solutions.first.state %></td>
+    <% end %>
     <td><%= link_to 'Show', problem %></td>
     <% if current_user && current_user.is_admin? %>
     <td><%= link_to 'Edit', edit_problem_path(problem) %></td>

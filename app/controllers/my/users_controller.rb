@@ -1,6 +1,12 @@
 class My::UsersController < ApplicationController 
   before_filter :login_required
 
+  #POST /users/resolve/
+  def resolve
+    @user = User.find(params[:id])
+    @problem = Problem.find(params[:id])
+  end 
+
   # GET /users/1
   # GET /users/1.json
   def show
