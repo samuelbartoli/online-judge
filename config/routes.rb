@@ -16,6 +16,8 @@ OnlineJudge::Application.routes.draw do
 
   resources :problems, :module => "admin"
 
+  resources :solutions, :only => [:update]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
